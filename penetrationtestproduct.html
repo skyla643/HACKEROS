@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        /* Hacker theme CSS */
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff0000;
+        }
+        .product {
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .product h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        .product p {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .code-container {
+            background-color: #111111;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .code-container pre {
+            white-space: pre-wrap;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li> 
+        </ul>
+    </nav>
+    <div class="product">
+        <h2>Pen-test IP - Enter Your Own IP Address (Scroll for instructions below)</h2>
+        <div class="code-container">
+            <pre><code id="secure-chat-code">
+import socket
+
+def scan_vulnerabilities(ip):
+    print("Scanning vulnerabilities for IP:", ip)
+    open_ports = []
+    try:
+        for port in range(1, 1025):
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)  
+            result = sock.connect_ex((ip, port))
+            if result == 0:
+                open_ports.append(port)
+            sock.close()
+    except Exception as e:
+        print("Error scanning ports:", e)
+
+    if open_ports:
+        print("Open ports found:", open_ports)
+    else:
+        print("No open ports found.")
+
+def main():
+    ip = input("Enter the IP address to scan: ")
+
+    if ip:
+        scan_vulnerabilities(ip)
+    else:
+        print("No IP address provided. Exiting.")
+
+if __name__ == "__main__":
+    main()
+            </code></pre>
+            <button class="copy-button" onclick="copyCode('secure-chat-code')">Copy</button>
+        </div>
+        <div class="announcement">
+            <h2>Vulnerability Scanner</h2>
+
+            <p>The following Python script performs basic vulnerability scanning by checking for open ports on a specified IP address.</p>
+
+            <h3>Function Definitions:</h3>
+
+            <p><code>scan_vulnerabilities(ip):</code> This function takes an IP address as input and scans for open ports on that IP address.</p>
+
+            <p><code>main():</code> This function is the entry point of the script. It prompts the user to enter an IP address and calls the <code>scan_vulnerabilities</code> function with the provided IP address.</p>
+
+            <h3>Port Scanning:</h3>
+
+            <p>The <code>scan_vulnerabilities</code> function iterates through a range of port numbers from 1 to 1024 and attempts to establish a TCP connection to each port using the <code>socket.socket</code> function. If a connection is successful (connect_ex returns 0), it adds the port number to the <code>open_ports</code> list. After scanning all ports, the function prints the list of open ports found during the scan.</p>
+
+            <h3>User Input:</h3>
+
+            <p>The <code>main</code> function prompts the user to enter an IP address to scan.</p>
+
+            <h3>Execution:</h3>
+
+            <p>When the script is executed, it prompts the user to enter an IP address in the terminal. After entering the IP address, the script scans for open ports on that IP address using the <code>scan_vulnerabilities</code> function. The script then prints the list of open ports found during the scan.</p>
+
+            <h3>Output:</h3>
+
+            <p>The output shows the IP address being scanned and the list of open ports found, if any. Overall, this script provides a basic way to identify open ports on a specified IP address, which can help users understand potential vulnerabilities in their network.</p>
+
+        </div>
+    </div>
+    <!-- Add more product sections with code snippets and descriptions here -->
+    <footer>
+        <p>&copy; 2024 Hacker OS System Emrald Co. Unauthorized use prohibited.</p>
+        <p>Disclaimer: The Hacker OS System is intended for use only in extreme circumstances where traditional methods fail against ruthless adversaries. Its use should be a measure of last resort, and legal implications may apply.</p>
+    </footer>
+
+    <script>
+        function copyCode(id) {
+            var codeElement = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Code copied!");
+        }
+    </script>
+</body>
+</html>

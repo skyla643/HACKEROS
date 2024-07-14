@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        /* Hacker theme CSS */
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff0000;
+        }
+        .product {
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .product h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        .product p {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .code-container {
+            background-color: #111111;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .code-container pre {
+            white-space: pre-wrap;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li> 
+        </ul>
+    </nav>
+    <div class="product">
+        <h2>Web Crawl (Scroll for instructions below)</h2>
+        <div class="code-container">
+            <pre><code id="secure-chat-code">
+import urllib.request
+from urllib.parse import urlparse, urljoin
+import re
+
+def extract_links(url):
+    response = urllib.request.urlopen(url)
+    if response.getcode() == 200:
+        page_content = response.read().decode('utf-8')
+        links = re.findall(r'href="(.*?)"', page_content)
+        return links
+    else:
+        print("Error accessing:", url)
+        return []
+
+def check_vulnerabilities(url):
+    response = urllib.request.urlopen(url)
+    if response.getcode() == 200:
+        page_content = response.read().decode('utf-8')
+        if re.search(r'jquery\.js\?ver=1\.12\.4', page_content):
+            print("Vulnerability found: Outdated jQuery version detected on", url)
+        if re.search(r'SQL error', page_content, re.IGNORECASE):
+            print("Vulnerability found: Possible SQL Injection on", url)
+    else:
+        print("Error accessing:", url)
+
+def vulnerability_scanner(start_url):
+    visited_urls = set()
+    queue = [start_url]
+
+    while queue:
+        url = queue.pop(0)
+        visited_urls.add(url)
+
+        print("Scanning:", url)
+        links = extract_links(url)
+        for link in links:
+            absolute_link = urljoin(url, link)
+            if absolute_link not in visited_urls and absolute_link.startswith(start_url):
+                queue.append(absolute_link)
+                check_vulnerabilities(absolute_link)
+
+# REPLACE THE EXAMPLE BELOW WITH YOUR URL OR "LINK" OF CHOICE
+start_url = "https://example.com"
+vulnerability_scanner(start_url)
+            </code></pre>
+            <button class="copy-button" onclick="copyCode('secure-chat-code')">Copy</button>
+        </div>
+        <div class="announcement">
+            <h2>Web Vulnerability Scanner</h2>
+
+            <p>This Python script acts as a web vulnerability scanner, empowering users to assess their website's security by detecting potential vulnerabilities like outdated jQuery versions and SQL injection risks.</p>
+
+            <h3>Usage:</h3>
+            <p>The <code>vulnerability_scanner</code> function requires one argument:</p>
+            <ul>
+                <li><code>start_url</code>: The URL from which the scanning process will begin.</li>
+            </ul>
+
+            <h3>Steps:</h3>
+            <ol>
+                <li><strong>Initiate Scanning:</strong> Start by calling the <code>vulnerability_scanner</code> function with the URL of the webpage you want to scan.</li>
+            </ol>
+
+            <h3>Functionality:</h3>
+            <p>The <code>vulnerability_scanner</code> function executes the following:</p>
+            <ul>
+                <li><strong>Web Crawling:</strong> Traverses the webpage starting from the specified URL, scanning all linked pages within the same domain.</li>
+                <li><strong>Link Extraction:</strong> Extracts links from each webpage, ensuring a comprehensive examination of your website's structure.</li>
+                <li><strong>Vulnerability Assessment:</strong> Inspects each webpage for potential vulnerabilities, such as outdated jQuery versions and SQL injection risks.</li>
+                <li><strong>Informative Output:</strong> If any vulnerabilities are found, the scanner promptly notifies you, providing detailed information about the vulnerability type and the URL where it was detected.</li>
+            </ul>
+
+            <h3>Example Usage:</h3>
+            <pre><code># REPLACE 'https://example.com' WITH YOUR WEBSITE URL
+start_url = "https://example.com"
+vulnerability_scanner(start_url)
+            </code></pre>
+
+            <h3>Important Note:</h3>
+            <p>Ensure that the <code>start_url</code> variable in the provided Python script is replaced with the URL of the webpage you intend to scan.</p>
+        </div>
+    </div>
+    <!-- Add more product sections with code snippets and descriptions here -->
+    <footer>
+        <p>&copy; 2024 Hacker OS System Emrald Co. Unauthorized use prohibited.</p>
+        <p>Disclaimer: The Hacker OS System is intended for use only in extreme circumstances where traditional methods fail against ruthless adversaries. Its use should be a measure of last resort, and legal implications may apply.</p>
+    </footer>
+
+    <script>
+        function copyCode(id) {
+            var codeElement = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Code copied!");
+        }
+    </script>
+</body>
+</html>

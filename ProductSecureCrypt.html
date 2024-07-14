@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        /* Hacker theme CSS */
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff0000;
+        }
+        .product {
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .product h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        .product p {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .code-container {
+            background-color: #111111;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .code-container pre {
+            white-space: pre-wrap;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li>
+        </ul>
+    </nav>
+    <div class="product">
+        <h2>SecureCrypt (Scroll for instructions below)</h2>
+        <div class="code-container">
+            <pre><code id="secure-chat-code">
+import os
+from cryptography.fernet import Fernet
+
+# Generate a secure encryption key
+key = Fernet.generate_key()
+
+# Create a file to store the encryption key
+key_file = "encryption_key.txt"
+if not os.path.exists(key_file):
+    with open(key_file, "wb") as f:
+        f.write(key)
+
+# Encrypt a sensitive message
+message = b"This is a secret message"
+fernet = Fernet(key)
+encrypted_message = fernet.encrypt(message)
+
+# Save the encrypted message to a file
+encrypted_file = "encrypted_message.txt"
+if os.path.exists(encrypted_file):
+    os.remove(encrypted_file)
+
+with open(encrypted_file, "wb") as f:
+    f.write(encrypted_message)
+
+# At this point, the encrypted message is saved in the encrypted_file
+# and can be securely transmitted over the network.
+
+# To decrypt the message, read the key file and use the Fernet object to decrypt it
+with open(key_file, "rb") as f:
+    key = f.read()
+
+fernet = Fernet(key)
+
+with open(encrypted_file, "rb") as f:
+    encrypted_message = f.read()
+
+decrypted_message = fernet.decrypt(encrypted_message)
+decrypted_message = decrypted_message.decode()
+
+# The decrypted message is now available as a string
+print(decrypted_message)
+
+/* New file */
+
+import os
+import sys
+from cryptography.fernet import Fernet
+
+if 'cryptography' not in sys.modules:
+    print("Module 'cryptography' is not installed. Please run 'pip install cryptography' to install it.")
+    sys.exit(1)
+
+/* New file */
+
+import os
+from cryptography.fernet import Fernet
+
+# Generate a key and save it to a file
+key = Fernet.generate_key()
+with open("your_folder", "wb") as file:
+    file.write(key)
+
+# Encrypt a message
+message = "This is a secret message".encode()
+fernet = Fernet(key)
+encrypted_message = fernet.encrypt(message)
+
+# Save the encrypted message to a file
+with open("your_folder", "wb") as file:
+    file.write(encrypted_message)
+
+# Decrypt the message
+with open("your_txt_folder", "rb") as file:
+    encrypted_message = file.read()
+
+decrypted_message = fernet.decrypt(encrypted_message)
+decrypted_message = decrypted_message.decode()
+
+# Print the decrypted message
+print(decrypted_message)
+            </code></pre>
+            <button class="copy-button" onclick="copyCode('secure-chat-code')">Copy</button>
+        </div>
+        <h2>SecureCrypt: Encrypt & Decrypt Your Messages</h2>
+        <p>SecureCrypt is a Python script designed to encrypt and decrypt messages securely. Below are the instructions for using SecureCrypt:</p>
+
+        <ol>
+            <li><strong>Key Generation and Encryption:</strong>
+                <ul>
+                    <li>The script generates a secure encryption key using the Fernet encryption scheme.</li>
+                    <li>It creates a file named <code>encryption_key.txt</code> to store the encryption key if it doesn't exist already.</li>
+                    <li>A sensitive message "This is a secret message" is encrypted using the generated key.</li>
+                    <li>The encrypted message is saved to a file named <code>encrypted_message.txt</code>.</li>
+                </ul>
+            </li>
+            <li><strong>Decryption:</strong>
+                <ul>
+                    <li>To decrypt the message, the script reads the encryption key from the <code>encryption_key.txt</code> file.</li>
+                    <li>It utilizes the Fernet object to decrypt the encrypted message.</li>
+                    <li>The decrypted message is printed to the console as a string.</li>
+                </ul>
+            </li>
+            <li><strong>Library Check (Optional):</strong>
+                <ul>
+                    <li>There's a check to ensure that the <code>cryptography</code> library is installed. If not, it prompts the user to install it using <code>pip install cryptography</code>.</li>
+                </ul>
+            </li>
+            <li><strong>File Handling (Second Code Block):</strong>
+                <ul>
+                    <li>Another code block appears to generate a new encryption key and save it to a file.</li>
+                    <li>It then encrypts a new message and saves the encrypted message to a file.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <p><strong>Important:</strong> Replace <code>"your_folder"</code> with the actual folder path where you want to store the encryption key and encrypted message files. Replace <code>"your_txt_folder"</code> with the actual path to the encrypted message file.</p>
+
+        <p><strong>Execution:</strong> Run the script to perform encryption and decryption operations.</p>
+
+        <p><strong>Error Handling:</strong> Ensure that error handling mechanisms are in place, especially for file operations and decryption failures.</p>
+
+        <p>By following these instructions, you can effectively utilize the provided code for encryption and decryption tasks.</p>
+    </div>
+    <!-- Add more product sections with code snippets and descriptions here -->
+    <footer>
+        <p>&copy; 2024 Hacker OS System Emrald Co. Unauthorized use prohibited.</p>
+        <p>Disclaimer: The Hacker OS System is intended for use only in extreme circumstances where traditional methods fail against ruthless adversaries. Its use should be a measure of last resort, and legal implications may apply.</p>
+    </footer>
+
+    <script>
+        function copyCode(id) {
+            var codeElement = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Code copied!");
+        }
+    </script>
+</body>
+</html>
