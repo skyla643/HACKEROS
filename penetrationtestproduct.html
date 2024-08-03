@@ -95,7 +95,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li> 
+            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li>
         </ul>
     </nav>
     <div class="product">
@@ -103,33 +103,45 @@
         <div class="code-container">
             <pre><code id="secure-chat-code">
 import socket
+import ipaddress
+import asyncio
+import concurrent.futures
 
-def scan_vulnerabilities(ip):
-    print("Scanning vulnerabilities for IP:", ip)
-    open_ports = []
+def scan_port(ip, port):
     try:
-        for port in range(1, 1025):
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(1)  
-            result = sock.connect_ex((ip, port))
-            if result == 0:
-                open_ports.append(port)
-            sock.close()
-    except Exception as e:
-        print("Error scanning ports:", e)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1) # change "time-out" time for your needs.  
+        result = sock.connect_ex((ip, port))
+        if result == 0:
+            print(f"Port {port} is open")
+        sock.close()
+    except socket.error as e:
+        print(f"Socket error: {e}")
+    except TimeoutError:
+        print("Timeout error")
 
-    if open_ports:
-        print("Open ports found:", open_ports)
-    else:
-        print("No open ports found.")
+async def scan_ports(ip, start_port=1, end_port=100): # change the number of ports for your needs.
+    loop = asyncio.get_running_loop()
+    tasks = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        for port in range(start_port, end_port + 1):
+            task = loop.run_in_executor(executor, scan_port, ip, port)
+            tasks.append(task)
+
+        await asyncio.gather(*tasks)
 
 def main():
     ip = input("Enter the IP address to scan: ")
 
-    if ip:
-        scan_vulnerabilities(ip)
-    else:
-        print("No IP address provided. Exiting.")
+    try:
+        ipaddress.ip_address(ip)
+    except ValueError:
+        print("Invalid IP address")
+        return
+
+    print(f"Starting port scan on {ip}...")
+    asyncio.run(scan_ports(ip))
+    print("Port scan complete!")
 
 if __name__ == "__main__":
     main()
@@ -143,26 +155,27 @@ if __name__ == "__main__":
 
             <h3>Function Definitions:</h3>
 
-            <p><code>scan_vulnerabilities(ip):</code> This function takes an IP address as input and scans for open ports on that IP address.</p>
+            <p><code>scan_port(ip, port):</code> This function takes an IP address and a port number as input and attempts to establish a TCP connection to the specified port on the IP address. If the connection is successful, it prints that the port is open.</p>
 
-            <p><code>main():</code> This function is the entry point of the script. It prompts the user to enter an IP address and calls the <code>scan_vulnerabilities</code> function with the provided IP address.</p>
+            <p><code>scan_ports(ip, start_port=1, end_port=100):</code> This asynchronous function scans a range of port numbers on the specified IP address. It uses a thread pool executor to run the <code>scan_port</code> function concurrently for each port in the range.</p>
+
+            <p><code>main():</code> This function is the entry point of the script. It prompts the user to enter an IP address, validates the IP address, and calls the <code>scan_ports</code> function with the provided IP address.</p>
 
             <h3>Port Scanning:</h3>
 
-            <p>The <code>scan_vulnerabilities</code> function iterates through a range of port numbers from 1 to 1024 and attempts to establish a TCP connection to each port using the <code>socket.socket</code> function. If a connection is successful (connect_ex returns 0), it adds the port number to the <code>open_ports</code> list. After scanning all ports, the function prints the list of open ports found during the scan.</p>
+            <p>The <code>scan_ports</code> function iterates through a range of port numbers specified by <code>start_port</code> and <code>end_port</code> and attempts to establish a TCP connection to each port using the <code>scan_port</code> function. If a connection is successful (<code>connect_ex</code> returns 0), it prints that the port is open.</p>
 
             <h3>User Input:</h3>
 
-            <p>The <code>main</code> function prompts the user to enter an IP address to scan.</p>
+            <p>The <code>main</code> function prompts the user to enter an IP address to scan and validates the input using the <code>ipaddress</code> library.</p>
 
             <h3>Execution:</h3>
 
-            <p>When the script is executed, it prompts the user to enter an IP address in the terminal. After entering the IP address, the script scans for open ports on that IP address using the <code>scan_vulnerabilities</code> function. The script then prints the list of open ports found during the scan.</p>
+            <p>When the script is executed, it prompts the user to enter an IP address in the terminal. After entering the IP address, the script validates the IP address and scans for open ports on that IP address using the <code>scan_ports</code> function. The script then prints the status of each port during the scan.</p>
 
             <h3>Output:</h3>
 
-            <p>The output shows the IP address being scanned and the list of open ports found, if any. Overall, this script provides a basic way to identify open ports on a specified IP address, which can help users understand potential vulnerabilities in their network.</p>
-
+            <p>The output shows the IP address being scanned and the status of each port within the specified range. If any ports are open, it prints the port numbers. Overall, this script provides a basic way to identify open ports on a specified IP address, which can help users understand potential vulnerabilities in their network.</p>
         </div>
     </div>
     <!-- Add more product sections with code snippets and descriptions here -->
