@@ -73,6 +73,61 @@
             background-color: #ff0000; /* Red background on hover */
             color: #ffffff; /* White text on hover */
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                margin: 0.5in;
+                padding: 0.5in;
+            }
+            header {
+                padding: 0.5in 0;
+            }
+            section {
+                padding: 0.5in;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                margin-bottom: 0.5in;
+            }
+            button, .home-button {
+                padding: 8px 16px;
+                margin-bottom: 0.5in;
+            }
+            .disclaimer {
+                padding: 0.5in;
+                margin-bottom: 0.5in;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                margin: 0.2in;
+                padding: 0.2in;
+            }
+            header {
+                padding: 0.2in 0;
+            }
+            section {
+                padding: 0.2in;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                margin-bottom: 0.2in;
+            }
+            button, .home-button {
+                padding: 6px 12px;
+                margin-bottom: 0.2in;
+            }
+            .disclaimer {
+                padding: 0.2in;
+                margin-bottom: 0.2in;
+            }
+        }
     </style>
 </head>
 <body>
