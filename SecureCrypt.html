@@ -62,9 +62,9 @@
             padding: 12px 24px;
             border: none;
             cursor: pointer;
-            position: absolute; /* Set home button as absolute positioning */
-            top: 1in; /* Distance from top */
-            left: 1in; /* Distance from left */
+            position: fixed; /* Set home button as fixed positioning */
+            top: 20px; /* Distance from top */
+            left: 20px; /* Distance from left */
             font-size: 18px;
             transition: background-color 0.3s, color 0.3s;
             border-radius: 8px;
@@ -72,6 +72,67 @@
         .home-button:hover {
             background-color: #ff0000; /* Red background on hover */
             color: #ffffff; /* White text on hover */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                margin: 0.5in;
+                padding: 0.5in;
+            }
+            header {
+                padding: 0.5in 0;
+            }
+            section {
+                padding: 0.5in;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                margin-bottom: 0.5in;
+                font-size: 1rem;
+            }
+            button, .home-button {
+                padding: 8px 16px;
+                margin-bottom: 0.5in;
+                font-size: 16px;
+            }
+            .disclaimer {
+                padding: 0.5in;
+                margin-bottom: 0.5in;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                margin: 0.2in;
+                padding: 0.2in;
+            }
+            header {
+                padding: 0.2in 0;
+            }
+            section {
+                padding: 0.2in;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                margin-bottom: 0.2in;
+                font-size: 0.9rem;
+            }
+            button, .home-button {
+                padding: 6px 12px;
+                margin-bottom: 0.2in;
+                font-size: 14px;
+            }
+            .disclaimer {
+                padding: 0.2in;
+                margin-bottom: 0.2in;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
