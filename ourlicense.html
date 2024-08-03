@@ -58,6 +58,42 @@
             background-color: #ff0000; /* Red button on hover */
             color: #ffffff; /* White text on hover */
         }
+        footer {
+            background-color: #000000; /* Black footer */
+            color: #00ff00; /* Neon green text */
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #00ff00; /* Neon green border */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .license-container {
+                padding: 15px;
+                margin: 15px;
+            }
+            .home-button {
+                padding: 8px 16px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .license-container {
+                padding: 10px;
+                margin: 10px;
+            }
+            .home-button {
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -249,5 +285,3 @@
     </footer>
 </body>
 </html>
-
-
