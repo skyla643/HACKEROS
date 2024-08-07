@@ -24,7 +24,6 @@
             margin: 0;
             text-transform: uppercase; /* Uppercase text */
             letter-spacing: 3px; /* Increased letter spacing */
-            color: #00ff00; /* Neon green text */
         }
         nav {
             background-color: #000000; /* Black navigation background */
@@ -65,6 +64,13 @@
         p {
             color: #ffffff; /* White text */
             line-height: 1.6; /* Increased line height for better readability */
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
         }
         footer {
             background-color: #000000; /* Black footer */
@@ -116,6 +122,34 @@
                 color: #ff0000; /* Red text */
             }
         }
+
+        .cool-button a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .home-button {
+            color: #ff0000; /* Red text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block; /* Display as block element */
+            margin: 20px auto; /* Center horizontally with margin */
+            background-color: #00ff00; /* Green background */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        .home-button a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: #ff0000; /* Red background on hover */
+            color: #ffffff; /* White text on hover */
+        }
     </style>
 </head>
 <body>
@@ -143,56 +177,65 @@
         </div>
 
         <section id="secure-interface">
-            <h2>SecureCrypt</h2>
-            <p>SecureCrypt provides users with a suite of advanced tools and functionalities tailored for secure data handling. These include:</p>
-            <ul>
-                <li>Encryption and decryption utilities ensuring secure transmission of data</li>
-                <li>Implementation of secure communication protocols with end-to-end encryption</li>
-                <li>Robust access control mechanisms ensuring authenticated user access</li>
-                <li>Secure storage solutions to protect sensitive information from unauthorized access or breaches</li>
-            </ul>
-        </section>
+            <section id="securecrypt">
+                <h2>SecureCrypt</h2>
+                <p>Our updated SecureCrypt tool provides a robust solution for secure communication by encrypting messages and transmitting them safely via email. Here's what it offers:</p>
+                <ul>
+                    <li>Automatic Key Handling: Creates a new encryption key if absent and seamlessly loads existing keys.</li>
+                    <li>Email Encryption: Encodes messages and sends them as secure email attachments.</li>
+                    <li>Intuitive Input: Prompts for message content and recipient email for easy use.</li>
+                    <li>Advanced Error Reporting: Offers detailed error messages for easy troubleshooting.</li>
+                </ul>
+                <h3>What's New</h3>
+                <p>Our latest version enhances your secure messaging experience with:</p>
+                <ul>
+                    <li>Improved automatic key management, reducing the need for manual intervention.</li>
+                    <li>Streamlined email encryption process for faster and more reliable message transmission.</li>
+                    <li>Intuitive user prompts to simplify message input and recipient email entry.</li>
+                    <li>Enhanced error reporting to provide more detailed troubleshooting information.</li>
+                </ul>
+                <p>Experience the benefits of secure and efficient message encryption and transmission with our updated SecureCrypt tool.</p>
+            </section>
 
-        <section id="passcrack">
-            <h2>PassCrack: Password Security Assessment Tool</h2>
-            <p>PassCrack is a comprehensive utility engineered to fortify your password security effortlessly. Here's how it empowers you:</p>
-            <ul>
-                <li>Efficient password evaluation through hash cracking techniques, including dictionary and brute-force attacks</li>
-                <li>Simple and intuitive interface for inputting essential parameters such as hash type, target hash, charset, and maximum length</li>
-                <li>Real-time feedback on password strength assessment, enabling prompt action to enhance security measures</li>
-                <li>Seamless integration into your security protocols for proactive risk mitigation and safeguarding sensitive data</li>
-            </ul>
-        </section>
+            <section id="passcrack">
+                <h2>PassCrack: Password Security Assessment Tool</h2>
+                <p>PassCrack is a comprehensive utility engineered to fortify your password security effortlessly. Here's how it empowers you:</p>
+                <ul>
+                    <li>Efficient password evaluation through hash cracking techniques, including dictionary and brute-force attacks</li>
+                    <li>Simple and intuitive interface for inputting essential parameters such as hash type, target hash, charset, and maximum length</li>
+                    <li>Real-time feedback on password strength assessment, enabling prompt action to enhance security measures</li>
+                    <li>Seamless integration into your security protocols for proactive risk mitigation and safeguarding sensitive data</li>
+                </ul>
+            </section>
 
-        <section id="webcrawlscanner">
-            <h2>Web Crawl Scanner: Website Vulnerability Assessment Tool</h2>
-            <p>Web Crawl Scanner is an advanced tool meticulously crafted to bolster the security of your website effortlessly. Here's how it equips you:</p>
-            <ul>
-                <li>Thorough vulnerability assessment, detecting outdated libraries, SQL injection, and more</li>
-                <li>Intuitive interface for easy configuration of scanning parameters</li>
-                <li>Immediate notification of detected vulnerabilities for prompt action</li>
-                <li>Seamless integration with existing security infrastructure for proactive risk management</li>
-            </ul>
-        </section>
+            <section id="webcrawlscanner">
+                <h2>Web Crawl Scanner: Website Vulnerability Assessment Tool</h2>
+                <p>Web Crawl Scanner is an advanced tool meticulously crafted to bolster the security of your website effortlessly. Here's how it equips you:</p>
+                <ul>
+                    <li>Thorough vulnerability assessment, detecting outdated libraries, SQL injection, and more</li>
+                    <li>Intuitive interface for easy configuration of scanning parameters</li>
+                    <li>Immediate notification of detected vulnerabilities for prompt action</li>
+                    <li>Seamless integration with existing security infrastructure for proactive risk management</li>
+                </ul>
+            </section>
 
-        <section id="penetration-testing-tool">
-            <h2>Penetration Testing Tool</h2>
-            <p>Our updated Penetration Testing Tool is a powerful utility designed to bolster your system's security. Here's what it offers:</p>
-            <ul>
-                <li>Basic vulnerability scanning by checking for open ports on specified IP addresses</li>
-                <li>User-friendly interface with simple prompts for IP input</li>
-                <li>Immediate feedback on discovered open ports, aiding in identifying potential vulnerabilities</li>
-                <li>Seamless integration into your security workflow for proactive risk management</li>
-            </ul>
-            <h3>What's New</h3>
-            <p>Our latest version enhances your security assessment with:</p>
-            <ul>
-                <li>Configurable timeouts for optimized performance</li>
-                <li>Efficient navigation through designated port ranges using Python's built-in socket module</li>
-                <li>Reduced dependency on external libraries, ensuring a more streamlined and efficient scanning process</li>
-            </ul>
-        </section>        
-            </ul>
+            <section id="penetration-testing-tool">
+                <h2>Penetration Testing Tool</h2>
+                <p>Our updated Penetration Testing Tool is a powerful utility designed to bolster your system's security. Here's what it offers:</p>
+                <ul>
+                    <li>Basic vulnerability scanning by checking for open ports on specified IP addresses</li>
+                    <li>User-friendly interface with simple prompts for IP input</li>
+                    <li>Immediate feedback on discovered open ports, aiding in identifying potential vulnerabilities</li>
+                    <li>Seamless integration into your security workflow for proactive risk management</li>
+                </ul>
+                <h3>What's New</h3>
+                <p>Our latest version enhances your security assessment with:</p>
+                <ul>
+                    <li>Configurable timeouts for optimized performance</li>
+                    <li>Efficient navigation through designated port ranges using Python's built-in socket module</li>
+                    <li>Reduced dependency on external libraries, ensuring a more streamlined and efficient scanning process</li>
+                </ul>
+            </section>
         </section>
     </article>
     <footer>
@@ -202,7 +245,7 @@
 
     <!-- Construction sign -->
     <div class="construction-sign">
-        <p> Updating products </p>
+        <p>Updating products</p>
     </div>
 </body>
 </html>
