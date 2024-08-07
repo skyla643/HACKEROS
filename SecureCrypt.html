@@ -12,7 +12,6 @@
             font-family: 'Courier New', Courier, monospace; /* Monospace font */
             margin: 1in;
             padding: 1in;
-            position: relative; /* Set body as relative positioning */
         }
         header {
             background-color: #000000; /* Black header */
@@ -72,6 +71,14 @@
         .home-button:hover {
             background-color: #ff0000; /* Red background on hover */
             color: #ffffff; /* White text on hover */
+        }
+        .home-button a {
+            color: inherit;
+            text-decoration: none;
+        }
+        button a {
+            color: inherit;
+            text-decoration: none;
         }
 
         /* Media Queries for Responsiveness */
@@ -141,21 +148,29 @@
         <h1>SecureCrypt</h1>
     </header>
     <section>
-        <p>Our SecureCrypt interface seamlessly integrates advanced security features to ensure enhanced privacy and protection for users. Through a combination of robust authentication methods, encrypted communication channels, and stringent access control measures, SecureCrypt offers a secure environment for accessing various features.</p>
+        <p>Our Secure-Crypt-New-Public tool provides a robust solution for secure communication by encrypting messages and transmitting them safely via email. It allows users to generate encryption keys, encrypt and decrypt messages, and send encrypted messages as email attachments with ease.</p>
 
-        <p>Our interface leverages sophisticated authentication techniques, including multi-factor authentication, to verify users' identities effectively. This ensures that only authorized individuals can access the system, adding an extra layer of security.</p>
+        <h2>New Features:</h2>
+        <ul>
+            <li><strong>Automatic Key Management:</strong> Generates a new encryption key if one doesn't exist and loads existing keys seamlessly.</li>
+            <li><strong>Email Encryption:</strong> Encrypts messages and sends them as email attachments to ensure secure transmission.</li>
+            <li><strong>User-Friendly Input:</strong> Prompts for message and recipient email for straightforward operation.</li>
+            <li><strong>Error Handling:</strong> Provides detailed error messages for troubleshooting.</li>
+        </ul>
 
-        <p>End-to-end encryption is employed to safeguard communication between users and the system, guaranteeing that all data transmitted remains confidential and immune to interception by unauthorized entities. This encryption ensures the privacy and integrity of sensitive information exchanged within the interface.</p>
+        <h2>Comparison with Previous Version:</h2>
+        <ul>
+            <li><strong>Old Version:</strong> Basic encryption with manual key handling and limited error messages.</li>
+            <li><strong>New Version:</strong> Enhanced automatic key management, streamlined email encryption process, user-friendly prompts, and improved error handling.</li>
+        </ul>
 
-        <p>Moreover, SecureCrypt implements granular access control mechanisms to regulate user permissions and restrict access to specific features or data based on predefined roles. This ensures that users only have access to the information and functionalities relevant to their roles, minimizing the risk of unauthorized access and data breaches.</p>
+        <p>Experience secure and efficient message encryption and transmission with our updated Secure-Crypt-New-Public tool.</p>
 
-        <p>In essence, SecureCrypt provides a seamless and intuitive user experience while prioritizing the utmost security and privacy of user data. With SecureCrypt, users can confidently interact with the interface, knowing that their information is protected against unauthorized access and interception.</p>
-
-        <button><a href="securecryptproduct.html" style="color: inherit; text-decoration: none;">View Product</a></button>
+        <button><a href="securecryptproduct.html">View Product</a></button>
         <div class="disclaimer">
             <p>Windows use only<br>SSH and Mac OS coming soon</p>
         </div>
-        <button class="home-button"><a href="index.html" style="color: inherit; text-decoration: none;">Home</a></button>
+        <button class="home-button"><a href="index.html">Home</a></button>
     </section>
 </body>
 </html>
