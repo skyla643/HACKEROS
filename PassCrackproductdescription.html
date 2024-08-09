@@ -1,223 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <style>
-        /* Hacker theme CSS */
-        body {
-            background-color: #000000;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #000000;
-            color: #00ff00;
-            padding: 20px 0;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        nav {
-            background-color: #000000;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: #00ff00;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: #ff0000;
-        }
-        .product {
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 20px;
-        }
-        .product h2 {
-            color: #00ff00;
-            font-size: 2rem;
-            margin-top: 0;
-        }
-        .product p {
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        .code-container {
-            background-color: #111111;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .code-container pre {
-            white-space: pre-wrap;
-        }
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #00ff00;
-            color: #000000;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        .copy-button:hover {
-            background-color: #ff0000;
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Products</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li> 
-        </ul>
-    </nav>
-    <div class="product">
-        <h2>PassCrack</h2>
-        <div class="code-container">
-            <pre><code id="secure-chat-code">
-import itertools
+
 import hashlib
+import requests
 
-def crack_password(hash_type, target_hash, charset, max_length):
-    """
-    Cracks a hashed password using various techniques.
+# Function to check if a password has been leaked
+def check_password_leak(password):
+    # Hash the password using SHA-1
+    sha1_password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
 
-    Args:
-        hash_type (str): The type of hash algorithm used (e.g., "md5", "sha1").
-        target_hash (str): The hashed password to crack.
-        charset (str): The character set to use for brute-force attacks.
-        max_length (int): The maximum length of passwords to attempt.
+    # The first 5 characters of the hash (for k-anonymity)
+    prefix = sha1_password[:5]
 
-    Returns:
-        str: The cracked password, or None if not found.
-    """
-    if hash_type not in hashlib.algorithms_available:
-        print("Invalid hash algorithm.")
-        return None
+    # The rest of the hash
+    suffix = sha1_password[5:]
 
-    if hash_type == "md5":
-        hash_func = hashlib.md5
-    elif hash_type == "sha1":
-        hash_func = hashlib.sha1
-    elif hash_type == "sha256":
-        hash_func = hashlib.sha256
-    # Add more hash algorithms as needed
+    # Query the Have I Been Pwned API with the first 5 characters
+    url = f'https://api.pwnedpasswords.com/range/{prefix}'
+    response = requests.get(url)
 
-    # Dictionary attack
-    try:
-        with open("common_passwords.txt", "r") as f:
-            common_passwords = f.readlines()
-            for password in common_passwords:
-                password = password.strip()
-                if hash_func(password.encode()).hexdigest() == target_hash:
-                    return password
-    except FileNotFoundError:
-        print("The file 'common_passwords.txt' was not found. Please create the file and add a list of common passwords to it.")
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Check if the suffix is in the response
+        hashes = (line.split(':') for line in response.text.splitlines())
+        for h, count in hashes:
+            if h == suffix:
+                return True, count
+        return False, 0
+    else:
+        raise Exception(f"Failed to connect to API: {response.status_code}")
 
-    # Brute-force attack
-    for length in range(1, max_length + 1):
-        for attempt in itertools.product(charset, repeat=length):
-            password = "".join(attempt)
-            if hash_func(password.encode()).hexdigest() == target_hash:
-                return password
+# Function to check multiple passwords
+def check_multiple_passwords(passwords):
+    results = {}
+    for password in passwords:
+        leaked, count = check_password_leak(password)
+        results[password] = (leaked, count)
+    return results
 
-    return None
+# Example usage
+if __name__ == "__main__":
+    # You can hardcode passwords here or get them from user input
+    passwords = ["password1", "password2", "password3"]
 
-# New code for hashing:
-import hashlib
+    results = check_multiple_passwords(passwords)
 
-plaintext_password = "password"
-hash_type = "md5"
-hash_obj = hashlib.new(hash_type)
-hash_obj.update(plaintext_password.encode())
-target_hash = hash_obj.hexdigest()
-
-# New code for password cracking:
-cracked_password = crack_password(hash_type, target_hash, "abcdefghijklmnopqrstuvwxyz", 10)
-if cracked_password is not None:
-    print("Cracked password:", cracked_password)
-else:
-    print("Failed to crack password.")
-            </code></pre>
-            <button class="copy-button" onclick="copyCode('secure-chat-code')">Copy</button>
-        </div>
-        <div class="announcement">
-            <h2>Password Cracking Tool</h2>
-            <p>This Python script provides a password cracking tool that helps users test the strength of their passwords by attempting to crack them using various techniques such as dictionary attacks and brute-force attacks.</p>
-
-            <h3>Usage:</h3>
-            <p>The <code>crack_password</code> function takes four arguments:</p>
-            <ol>
-                <li><strong>hash_type:</strong> The type of hash algorithm used (e.g., "md5", "sha1").</li>
-                <li><strong>target_hash:</strong> The hashed password to crack.</li>
-                <li><strong>charset:</strong> The character set to use for brute-force attacks.</li>
-                <li><strong>max_length:</strong> The maximum length of passwords to attempt.</li>
-            </ol>
-
-            <p>To use the tool, follow these steps:</p>
-            <ol>
-                <li><strong>Generate a Hashed Password:</strong> Use a hash algorithm (e.g., MD5, SHA1) to generate a hashed password from a plaintext password. You can use the hashlib library in Python to accomplish this.</li>
-                <li><strong>Prepare Common Passwords:</strong> Create a <code>common_passwords.txt</code> file and add a list of common passwords to it, with each password on a separate line.</li>
-                <li><strong>Run the Script:</strong> Call the <code>crack_password</code> function with the appropriate arguments to attempt to crack the hashed password.</li>
-            </ol>
-
-            <h3>Functionality:</h3>
-            <p>The <code>crack_password</code> function performs the following steps:</p>
-            <ol>
-                <li>Checks if the <code>hash_type</code> argument is a valid hash algorithm supported by the hashlib library. If not, it prints an error message and returns None.</li>
-                <li>Defines a <code>hash_func</code> variable based on the <code>hash_type</code> argument, which is used to generate hash values using the specified hash algorithm.</li>
-                <li>Attempts a dictionary attack by reading common passwords from the <code>common_passwords.txt</code> file and checking if any of them match the target hash.</li>
-                <li>If no match is found in the dictionary attack, it performs a brute-force attack by generating all possible combinations of characters in the <code>charset</code> variable up to a specified maximum length.</li>
-                <li>Returns the cracked password if found, or None if no match is found.</li>
-            </ol>
-
-            <p><strong>Note:</strong> Replace <code>'common_passwords.txt'</code> with your own file path.</p>
-        </div>
-    </div>
-    <!-- Add more product sections with code snippets and descriptions here -->
-    <footer>
-        <p>&copy; 2024 Hacker OS System Emrald Co. Unauthorized use prohibited.</p>
-        <p>Disclaimer: The Hacker OS System is intended for use only in extreme circumstances where traditional methods fail against ruthless adversaries. Its use should be a measure of last resort, and legal implications may apply.</p>
-    </footer>
-
-    <script>
-        function copyCode(id) {
-            var codeElement = document.getElementById(id);
-            var range = document.createRange();
-            range.selectNode(codeElement);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            window.getSelection().removeAllRanges();
-            alert("Code copied!");
-        }
-    </script>
-</body>
-</html>
+    for password, (leaked, count) in results.items():
+        if leaked:
+            print(f"Password '{password}' has been leaked {count} times.")
+        else:
+            print(f"Password '{password}' is safe (not found in known breaches).")
+            
