@@ -1,4 +1,108 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        /* Hacker theme CSS */
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff0000;
+        }
+        .product {
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .product h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        .product p {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .code-container {
+            background-color: #111111;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .code-container pre {
+            white-space: pre-wrap;
+            color: #00ff00; /* Ensuring code is visible in the hacker theme */
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html"><img src="emerald-emerald-gemstone.jpg" alt="Home" width="50" height="50"> Home</a></li> 
+        </ul>
+    </nav>
+    <div class="product">
+        <h2>PassCrack</h2>
+        <div class="code-container">
+            <pre><code id="secure-chat-code">
 import hashlib
 import requests
 
@@ -48,4 +152,69 @@ if __name__ == "__main__":
             print(f"Password '{password}' has been leaked {count} times.")
         else:
             print(f"Password '{password}' is safe (not found in known breaches).")
-            
+            </code></pre>
+            <button class="copy-button" onclick="copyCode('secure-chat-code')">Copy</button>
+        </div>
+        <div class="announcement">
+            <h2>Password Leak Checker Tool</h2>
+            <p>This Python script provides a tool that helps users check if their passwords have been compromised in known data breaches by leveraging the <strong>Have I Been Pwned</strong> (HIBP) API.</p>
+
+            <h3>Usage:</h3>
+            <p>The <code>check_password_leak</code> function takes a single argument:</p>
+            <ol>
+                <li><strong>password:</strong> The plaintext password you want to check.</li>
+            </ol>
+
+            <p>To use the tool, follow these steps:</p>
+            <ol>
+                <li><strong>Prepare Your Environment:</strong> Ensure you have Python 3 installed on your system. Install the <code>requests</code> library by running:
+                    <pre><code>pip install requests</code></pre>
+                </li>
+                <li><strong>Create a List of Passwords:</strong> You can check either a single password or multiple passwords at once. Prepare a list of passwords that you want to verify against known breaches.</li>
+                <li><strong>Run the Script:</strong> Open your Python environment, copy and paste the script into your Python file, replace the placeholder passwords with your actual passwords, and run the script.</li>
+                <li><strong>Understanding the Output:</strong> For each password checked, the tool will inform you whether the password has been found in any known data breaches. If a password has been compromised, the script will also tell you how many times it has appeared in breaches.</li>
+                <li><strong>Take Action:</strong> 
+                    <ul>
+                        <li><strong>If a Password is Compromised:</strong> Immediately change the password on all accounts where it is used. Make sure to create a strong, unique password for each account.</li>
+                        <li><strong>If No Breaches are Found:</strong> While your password may not be compromised, it’s still a good idea to regularly update your passwords and ensure they are strong.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Important Warnings:</h3>
+            <ul>
+                <li><strong>Security of Your Passwords:</strong> Be cautious with your passwords. Avoid storing or sharing them insecurely. This tool does not store or transmit your actual passwords, but you should still handle them with care.</li>
+                <li><strong>Avoid Reusing Passwords:</strong> Even if a password is found to be safe, reusing passwords across multiple sites can still be a security risk. Always use unique passwords for different accounts.</li>
+                <li><strong>Use a Password Manager:</strong> Consider using a password manager to securely store and manage your passwords. Password managers can generate strong, unique passwords for each of your accounts.</li>
+            </ul>
+
+            <h3>Additional Tips:</h3>
+            <ul>
+                <li><strong>Running the Script on Multiple Systems:</strong> You can use this tool on any system that supports Python. Simply ensure you have the required environment set up, and the script will work the same across different platforms.</li>
+                <li><strong>Integrate with Your Security Routine:</strong> Regularly check your passwords using this tool as part of your overall security routine. This will help you stay ahead of potential breaches and ensure your online accounts remain secure.</li>
+                <li><strong>Stay Informed:</strong> Keep up-to-date with news about data breaches. Knowing when large breaches occur can help you time your checks and take action quickly.</li>
+            </ul>
+
+            <p>This Password Leak Checker Tool is an easy-to-use solution for ensuring your passwords haven’t been compromised in known data breaches. By following the instructions above, you can proactively protect your accounts and digital assets. Remember to handle your passwords responsibly and take immediate action if any are found to be compromised.</p>
+        </div>
+    </div>
+    <!-- Add more product sections with code snippets and descriptions here -->
+    <footer>
+        <p>&copy; 2024 Hacker OS System Emrald Co. Unauthorized use prohibited.</p>
+        <p>Disclaimer: The Hacker OS System is intended for use only in extreme circumstances where traditional methods fail against ruthless adversaries. Its use should be a measure of last resort, and legal implications may apply.</p>
+    </footer>
+
+    <script>
+        function copyCode(id) {
+            var codeElement = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+            alert("Code copied!");
+        }
+    </script>
+</body>
+</html>
